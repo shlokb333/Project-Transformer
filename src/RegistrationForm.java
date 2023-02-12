@@ -4,10 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-public class RegistrationForm extends JDialog {
+public class RegistrationForm extends JFrame {
     private JTextField tfName;
     private JTextField tfEmail;
     private JTextField tfPhone;
@@ -16,15 +15,14 @@ public class RegistrationForm extends JDialog {
     private JButton btnRegister;
     private JButton btnCancel;
     private JPanel registerPanel;
+    private JButton btnLogin;
 
-    public RegistrationForm(JFrame parent) {
-        super(parent);
-        setTitle("Create a new account");
+    public RegistrationForm() {
+        setTitle("Registration Page");
         setContentPane(registerPanel);
         setMinimumSize(new Dimension(1000, 500));
         setUndecorated(true);
-        setModal(true);
-        setLocationRelativeTo(parent);
+        setLocationRelativeTo(getParent());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         btnRegister.addActionListener(new ActionListener() {
@@ -40,7 +38,16 @@ public class RegistrationForm extends JDialog {
             }
         });
 
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginPage loginPage = new LoginPage();
+                loginPage.setVisible(true);
+                dispose();
+            }
+        });
         setVisible(true);
+        add(btnLogin);
     }
 
     private void registerUser() {
@@ -148,12 +155,7 @@ public class RegistrationForm extends JDialog {
     }
 
     public static void main(String[] args) {
-        RegistrationForm myForm = new RegistrationForm(null);
+        RegistrationForm myForm = new RegistrationForm();
         User user = myForm.user;
-        if (user != null) {
-            System.out.println("Successful registration of: " + user.name);
-        } else {
-            System.out.println("Registration canceled");
-        }
     }
 }
