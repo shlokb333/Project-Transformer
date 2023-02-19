@@ -26,37 +26,6 @@ public class LoginPage extends JFrame {
         final String USERNAME = "root";
         final String PASSWORD = "rootpassword";
 
-
-//        btnLogin.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent) {
-//                final String DB_URL = "jdbc:mysql://localhost:3306/swing_demo";
-//                final String USERNAME = "root";
-//                final String PASSWORD = "rootpassword";
-//
-//                try {
-//                    Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-//                    String email = edtEmail.getText();
-//                    String password = pfPassword.getText();
-//                    Statement stmt = conn.createStatement();
-//                    String sql = "SELECT * FROM acc where email_id = '" + email + "' and password = '" + password + "'";
-//
-//                    ResultSet rs = stmt.executeQuery(sql);
-//                    if (rs.next()) {
-//                        dispose();
-//                        Homepage homepage = new Homepage();
-//                        homepage.show();
-//                        homepage.setVisible(true);
-//                    } else {
-//                        JOptionPane.showMessageDialog(btnLogin,
-//                                "Wrong email or password");
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println("Unsuccessful");
-//                }
-//            }
-//        });
-
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 try {
@@ -68,7 +37,7 @@ public class LoginPage extends JFrame {
 
                     if (result.next()) {
                         JOptionPane.showMessageDialog(null, "Login Successful");
-                        new Homepage().setVisible(true);
+                        new ChooseType().setVisible(true);
                         setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "Login Failed");
